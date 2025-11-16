@@ -639,13 +639,7 @@ footer {
   width: 20px;
   height: 20px;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* Blanco inicial */
   transition: transform 0.3s ease;
-}
-
-.social-link:hover {
-  transform: translateY(-3px);
-  background: var(--white);
 }
 
 .social-link:hover .social-img {
