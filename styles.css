@@ -41,28 +41,41 @@ h5 {
    ========================================= */
 header {
   background-color: var(--primary-blue);
-  padding: 1rem 5%;
+  /* Quitamos padding directo, lo maneja header-content */
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* Alto z-index para estar sobre el mapa */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative; /* Para posicionar el menú móvil */
 }
-
 .logo-container {
   display: flex;
   align-items: center;
+  z-index: 1002; /* El logo siempre visible */
 }
 
 .logo-img {
-  height: 45px; /* Altura controlada del logo */
+  height: 45px;
   width: auto;
   display: block;
   object-fit: contain;
 }
-
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  justify-content: flex-end; /* Alinea menú a la derecha en PC */
+}
 nav ul {
   display: flex;
   list-style: none;
@@ -118,7 +131,16 @@ nav a:hover {
 .btn-register:hover {
   background: var(--bg-light);
 }
-
+/* Botón Hamburguesa (Oculto en Desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1002; /* Encima del menú desplegado */
+}
 /* =========================================
    HERO SECTION
    ========================================= */
@@ -656,21 +678,68 @@ footer {
    RESPONSIVE
    ========================================= */
 @media (max-width: 768px) {
-  header {
+  /* Mostrar botón */
+  .hamburger {
+    display: block;
+  }
+
+  /* Estilos del menú desplegable móvil */
+  .nav-container {
+    position: absolute;
+    top: 100%; /* Justo debajo del header */
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-blue);
+    flex-direction: column; /* Elementos en columna */
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+    /* Animación de entrada */
+    transform: translateY(-20px); /* Empieza un poco arriba */
+    opacity: 0; /* Invisible */
+    visibility: hidden; /* No clickeable */
+    transition: all 0.3s ease-in-out;
+    z-index: 1001;
+  }
+
+  /* Clase activa para mostrar menú (JS la agrega) */
+  .nav-container.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Ajustes internos del menú móvil */
+  nav ul {
     flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  nav a {
+    font-size: 1.2rem;
+    display: block;
+    padding: 5px;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    width: 80%;
     gap: 1rem;
   }
 
-  .logo-img {
-    height: 40px;
+  .btn-login,
+  .btn-register {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
   }
 
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 0.9rem;
-  }
-
+  /* Ajustes generales del layout móvil */
   .hero-content {
     flex-direction: column;
     text-align: center;
@@ -682,7 +751,7 @@ footer {
 
   .map-card {
     height: 300px;
-  } /* Mapa un poco más pequeño en móvil */
+  }
 
   .app-promo {
     padding: 3rem 5%;

@@ -18,27 +18,53 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
   </head>
   <body>
     <header>
-      <div class="logo-container">
-        <img src="Imagenes/logo sin fondo.png" alt="Logo PrevDengue" class="logo-img">
-    </div>
-      </div>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
 
-      <nav>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="#">Ver reportes</a></li>
-          <li><a href="#">Consultar Focos</a></li>
-          <li><a href="#">Comunidad</a></li>
-        </ul>
-      </nav>
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
 
-      <div class="auth-buttons">
-        <button class="btn-login" onclick="window.location.href='login.html'">Iniciar Sesión</button>
-        <button class="btn-register" onclick="window.location.href='register.html'">Registrar</button>
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="#">Ver reportes</a></li>
+              <li><a href="#">Consultar Focos</a></li>
+              <li><a href="#">Comunidad</a></li>
+            </ul>
+          </nav>
+
+          <div class="auth-buttons">
+            <button
+              class="btn-login"
+              onclick="window.location.href='login.html'"
+            >
+              Iniciar Sesión
+            </button>
+            <button
+              class="btn-register"
+              onclick="window.location.href='register.html'"
+            >
+              Registrar
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -233,75 +259,112 @@
 
     <footer>
       <div class="footer-container">
-          
-          <div class="footer-col">
-              <h3>PrevDengue</h3>
-              <p>© 2025 PrevDengue.<br>Todos los derechos reservados.</p>
-              <p class="version-text">Versión 1.0.0</p>
-          </div>
+        <div class="footer-col">
+          <h3>PrevDengue</h3>
+          <p>© 2025 PrevDengue.<br />Todos los derechos reservados.</p>
+          <p class="version-text">Versión 1.0.0</p>
+        </div>
 
-          <div class="footer-col">
-              <h4>Protección de Datos</h4>
-              <ul class="footer-links">
-                  <li><a href="">Ley N° 29733</a></li>
-                  <li><a href="#">Políticas de Privacidad</a></li>
-                  <li><a href="#">Normas de Uso</a></li>
-                  <li><a href="#">Reglamento de la App</a></li>
-              </ul>
-          </div>
+        <div class="footer-col">
+          <h4>Protección de Datos</h4>
+          <ul class="footer-links">
+            <li><a href="">Ley N° 29733</a></li>
+            <li><a href="#">Políticas de Privacidad</a></li>
+            <li><a href="#">Normas de Uso</a></li>
+            <li><a href="#">Reglamento de la App</a></li>
+          </ul>
+        </div>
 
-          <div class="footer-col">
-              <h4>Síguenos</h4>
-              <div class="social-icons">
-                  <a href="#" class="social-link facebook" aria-label="Facebook">
-                      <img src="Imagenes/facebook.png" alt="Facebook" class="social-img">
-                  </a>
-                  <a href="#" class="social-link instagram" aria-label="Instagram">
-                      <img src="Imagenes/Instagraml.png" alt="Instagram" class="social-img">
-                  </a>
-                  <a href="#" class="social-link telegram" aria-label="Telegram">
-                      <img src="Imagenes/telegrama.png" alt="Telegram" class="social-img">
-                  </a>
-                  <a href="#" class="social-link x-twitter" aria-label="X Twitter">
-                      <img src="Imagenes/X.png" alt="X" class="social-img">
-                  </a>
-              </div>
+        <div class="footer-col">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" class="social-link facebook" aria-label="Facebook">
+              <img
+                src="Imagenes/facebook.png"
+                alt="Facebook"
+                class="social-img"
+              />
+            </a>
+            <a href="#" class="social-link instagram" aria-label="Instagram">
+              <img
+                src="Imagenes/Instagraml.png"
+                alt="Instagram"
+                class="social-img"
+              />
+            </a>
+            <a href="#" class="social-link telegram" aria-label="Telegram">
+              <img
+                src="Imagenes/telegrama.png"
+                alt="Telegram"
+                class="social-img"
+              />
+            </a>
+            <a href="#" class="social-link x-twitter" aria-label="X Twitter">
+              <img src="Imagenes/X.png" alt="X" class="social-img" />
+            </a>
           </div>
-
+        </div>
       </div>
-  </footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    </footer>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <script>
-        // 1. Inicializar el mapa centrado en Lima, Perú (HU27)
-        // Coordenadas: [Latitud, Longitud], Zoom: 13
-        var map = L.map('main-map').setView([-11.95, -77.07], 13); 
+      // 1. Inicializar el mapa centrado en Lima, Perú (HU27)
+      // Coordenadas: [Latitud, Longitud], Zoom: 13
+      var map = L.map("main-map").setView([-11.95, -77.07], 13);
 
-        // 2. Cargar el diseño del mapa (OpenStreetMap)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+      // 2. Cargar el diseño del mapa (OpenStreetMap)
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap",
+      }).addTo(map);
 
-        // 3. Icono personalizado rojo para Alertas
-        var dengueIcon = L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
+      // 3. Icono personalizado rojo para Alertas
+      var dengueIcon = L.icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      });
 
-        // 4. Marcadores de ejemplo (Focos reportados)
-        L.marker([-11.955, -77.075], {icon: dengueIcon}).addTo(map)
-            .bindPopup('<b>Riesgo Alto</b><br>Agua estancada en parque.');
+      // 4. Marcadores de ejemplo (Focos reportados)
+      L.marker([-11.955, -77.075], { icon: dengueIcon })
+        .addTo(map)
+        .bindPopup("<b>Riesgo Alto</b><br>Agua estancada en parque.");
 
-        L.marker([-11.948, -77.062], {icon: dengueIcon}).addTo(map)
-            .bindPopup('<b>Posible Criadero</b><br>Llantas abandonadas.');
+      L.marker([-11.948, -77.062], { icon: dengueIcon })
+        .addTo(map)
+        .bindPopup("<b>Posible Criadero</b><br>Llantas abandonadas.");
 
-        // Marcador de ejemplo (Centro de Salud - Azul por defecto)
-        L.marker([-11.960, -77.080]).addTo(map)
-            .bindPopup('<b>Centro de Salud</b><br>Atención de 8am a 8pm.');
+      // Marcador de ejemplo (Centro de Salud - Azul por defecto)
+      L.marker([-11.96, -77.08])
+        .addTo(map)
+        .bindPopup("<b>Centro de Salud</b><br>Atención de 8am a 8pm.");
+    </script>
+    <script>
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+
+        // Cambiar ícono de barras a X
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
     </script>
   </body>
 </html>
