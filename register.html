@@ -135,5 +135,59 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const registerForm = document.querySelector(".register-form");
+        const passwordInput = document.getElementById("password");
+        const togglePasswordIcon = document.querySelector(".toggle-password");
+        const termsCheckbox = document.querySelector(
+          ".checkbox-container input[type='checkbox']"
+        );
+
+        // 1. Mostrar/Ocultar contraseña
+        togglePasswordIcon.addEventListener("click", () => {
+          const type =
+            passwordInput.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordInput.setAttribute("type", type);
+
+          togglePasswordIcon.classList.toggle("fa-eye");
+          togglePasswordIcon.classList.toggle("fa-eye-slash");
+        });
+
+        // 2. Validación y Redirección al enviar
+        registerForm.addEventListener("submit", (e) => {
+          e.preventDefault(); // Evita recarga
+
+          // Validar contraseña mínima
+          if (passwordInput.value.length < 8) {
+            alert("La contraseña debe tener al menos 8 caracteres.");
+            passwordInput.style.borderColor = "#EF4444";
+            passwordInput.focus();
+            return;
+          } else {
+            passwordInput.style.borderColor = "#E2E8F0";
+          }
+
+          // Validar términos (aunque el atributo 'required' ya ayuda, esto es doble seguridad)
+          if (!termsCheckbox.checked) {
+            alert("Debes aceptar los Términos y Condiciones.");
+            return;
+          }
+
+          // SI TODO ESTÁ BIEN -> REDIRIGIR A DASHBOARD
+          // Simulamos que el registro fue exitoso y el usuario ya está logueado
+          alert("¡Cuenta creada con éxito! Bienvenido a la comunidad.");
+          window.location.href = "dashboard.html";
+        });
+
+        // Limpiar error al escribir
+        passwordInput.addEventListener(
+          "input",
+          () => (passwordInput.style.borderColor = "#E2E8F0")
+        );
+      });
+    </script>
   </body>
 </html>

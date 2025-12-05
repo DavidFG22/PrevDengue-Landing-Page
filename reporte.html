@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevo Reporte - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body class="bg-gray">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="dashboard.html">Inicio</a></li>
+              <li><a href="dashboard.html">Mis Reportes</a></li>
+              <li><a href="#">Mapa de Calor</a></li>
+              <li><a href="#">Comunidad</a></li>
+            </ul>
+          </nav>
+
+          <div class="auth-buttons">
+            <button class="btn-profile">
+              <i class="fa-solid fa-user-circle"></i> Mi Perfil
+            </button>
+            <button
+              class="btn-logout"
+              onclick="window.location.href='index.html'"
+            >
+              Cerrar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="report-wrapper">
+      <div class="report-card-form">
+        <div class="form-header">
+          <a href="dashboard.html" class="back-link-simple">
+            <i class="fa-solid fa-arrow-left"></i> Cancelar
+          </a>
+          <h2>Reportar Foco</h2>
+        </div>
+
+        <form id="reportForm">
+          <div class="form-section">
+            <label class="form-label">Confirmar Ubicación</label>
+            <p class="form-helper">
+              Arrastra el marcador a la ubicación exacta.
+            </p>
+            <div id="mini-map" class="mini-map-container"></div>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label">Evidencia Fotográfica</label>
+            <div class="file-upload-wrapper">
+              <input
+                type="file"
+                id="foto"
+                accept="image/*"
+                class="file-input"
+              />
+              <label for="foto" class="file-label">
+                <i class="fa-solid fa-camera fa-2x"></i>
+                <span id="file-text">Tocar para subir foto</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label" for="tipoCriadero"
+              >Tipo de Criadero</label
+            >
+            <div class="input-wrapper">
+              <i class="fa-solid fa-bucket input-icon"></i>
+              <select id="tipoCriadero" required>
+                <option value="" disabled selected>
+                  Selecciona una opción...
+                </option>
+                <option value="balde">Balde / Recipiente sin tapa</option>
+                <option value="llanta">Llantas abandonadas</option>
+                <option value="techo">Techo con agua acumulada</option>
+                <option value="piscina">Piscina sin mantenimiento</option>
+                <option value="florero">Florero con agua</option>
+                <option value="otro">Otro</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-arrow"></i>
+            </div>
+          </div>
+
+          <div class="form-section symptoms-section">
+            <div class="switch-container">
+              <div class="switch-label">
+                <span class="label-title">¿Hay personas con síntomas?</span>
+                <span class="label-desc"
+                  >Fiebre, dolor de cabeza, sarpullido.</span
+                >
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="symptomToggle" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div id="medicalAlert" class="medical-alert hidden">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <p>
+                <strong>¡Atención!</strong> Si presentas síntomas, este reporte
+                será marcado como <strong>Prioridad Alta</strong>. Te
+                recomendamos acudir al centro de salud más cercano.
+              </p>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label" for="descripcion"
+              >Descripción adicional</label
+            >
+            <textarea
+              id="descripcion"
+              rows="3"
+              placeholder="Ej: El agua lleva estancada 3 días..."
+              class="text-area"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-report shadow-pulse">
+            Enviar Reporte
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      // 1. MENU HAMBURGUESA
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        navMenu.classList.contains("active")
+          ? icon.classList.replace("fa-bars", "fa-xmark")
+          : icon.classList.replace("fa-xmark", "fa-bars");
+      });
+
+      // 2. INICIALIZAR MAPA PEQUEÑO
+      var map = L.map("mini-map").setView([-11.95, -77.07], 15);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+      }).addTo(map);
+
+      // Marcador arrastrable para confirmar ubicación
+      var marker = L.marker([-11.95, -77.07], { draggable: true }).addTo(map);
+      marker.bindPopup("Mueveme a la ubicación exacta.").openPopup();
+
+      // 3. LÓGICA DE SÍNTOMAS (HU31)
+      const symptomToggle = document.getElementById("symptomToggle");
+      const medicalAlert = document.getElementById("medicalAlert");
+
+      symptomToggle.addEventListener("change", function () {
+        if (this.checked) {
+          medicalAlert.classList.remove("hidden");
+          medicalAlert.classList.add("visible");
+        } else {
+          medicalAlert.classList.remove("visible");
+          medicalAlert.classList.add("hidden");
+        }
+      });
+
+      // 4. FEEDBACK DE ARCHIVO
+      const fileInput = document.getElementById("foto");
+      const fileText = document.getElementById("file-text");
+
+      fileInput.addEventListener("change", function () {
+        if (this.files && this.files.length > 0) {
+          fileText.textContent = "Foto seleccionada: " + this.files[0].name;
+          fileText.style.color = "#22C55E";
+          fileText.style.fontWeight = "bold";
+        }
+      });
+
+      // 5. ENVÍO DEL FORMULARIO
+      document.getElementById("reportForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("¡Reporte enviado exitosamente! Gracias por tu colaboración.");
+        window.location.href = "dashboard.html";
+      });
+    </script>
+  </body>
+</html>

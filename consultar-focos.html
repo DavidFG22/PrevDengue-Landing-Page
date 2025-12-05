@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de Focos y Riesgos - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body class="bg-gray">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="ver-reportes.html">Ver reportes</a></li>
+              <li>
+                <a href="consultar-focos.html" class="active-link"
+                  >Consultar Focos</a
+                >
+              </li>
+              <li><a href="#">Comunidad</a></li>
+            </ul>
+          </nav>
+
+          <div class="auth-buttons">
+            <button
+              class="btn-login"
+              onclick="window.location.href='login.html'"
+            >
+              Iniciar Sesión
+            </button>
+            <button
+              class="btn-register"
+              onclick="window.location.href='register.html'"
+            >
+              Registrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-container full-height">
+      <div class="section-header-left">
+        <h1>Mapa de Riesgo Comunitario</h1>
+        <p>
+          Explora las zonas con reportes activos y ubica los centros de ayuda
+          más cercanos.
+        </p>
+      </div>
+
+      <div class="map-layout">
+        <aside class="map-sidebar">
+          <div class="sidebar-section">
+            <h3>Filtros de Visualización</h3>
+            <div class="filter-option">
+              <input
+                type="checkbox"
+                id="checkFocos"
+                checked
+                onchange="toggleLayer('focos')"
+              />
+              <label for="checkFocos"
+                ><i class="fa-solid fa-circle-exclamation text-red"></i> Focos
+                de Riesgo</label
+              >
+            </div>
+            <div class="filter-option">
+              <input
+                type="checkbox"
+                id="checkSalud"
+                checked
+                onchange="toggleLayer('salud')"
+              />
+              <label for="checkSalud"
+                ><i class="fa-solid fa-hospital text-blue"></i> Centros de
+                Salud</label
+              >
+            </div>
+            <div class="filter-option">
+              <input
+                type="checkbox"
+                id="checkZonas"
+                onchange="toggleLayer('zonas')"
+              />
+              <label for="checkZonas"
+                ><i class="fa-solid fa-layer-group text-orange"></i> Zonas
+                Críticas</label
+              >
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h3>Leyenda</h3>
+            <ul class="legend-list">
+              <li><span class="dot red"></span> Reporte de Alto Riesgo</li>
+              <li><span class="dot yellow"></span> Posible Criadero</li>
+              <li><span class="dot blue"></span> Hospital / Posta Médica</li>
+              <li><span class="dot green"></span> Zona Fumigada (Segura)</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h4>Resumen del Distrito</h4>
+            <p class="district-name">
+              <i class="fa-solid fa-location-dot"></i> Comas
+            </p>
+            <div class="stat-row">
+              <span>Alertas hoy:</span>
+              <strong>5</strong>
+            </div>
+            <div class="stat-row">
+              <span>Nivel de Riesgo:</span>
+              <strong style="color: #f59e0b">MEDIO</strong>
+            </div>
+          </div>
+        </aside>
+
+        <div class="map-viewer">
+          <div id="consult-map"></div>
+
+          <button
+            class="btn-locate"
+            onclick="locateUser()"
+            title="Mi ubicación"
+          >
+            <i class="fa-solid fa-crosshairs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      // 1. Menú Hamburguesa
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
+
+      // 2. Configuración del Mapa (Leaflet)
+      var map = L.map("consult-map").setView([-11.95, -77.07], 14);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap",
+      }).addTo(map);
+
+      // --- Iconos ---
+      var riesgoIcon = L.icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      });
+
+      var warningIcon = L.icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      });
+
+      var saludIcon = L.icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      });
+
+      // --- Capas de Datos ---
+      var focosGroup = L.layerGroup();
+      var saludGroup = L.layerGroup();
+      var zonasGroup = L.layerGroup(); // Círculos de zona
+
+      // Datos Ficticios
+      L.marker([-11.955, -77.075], { icon: riesgoIcon })
+        .bindPopup("<b>ALTO RIESGO</b><br>Piscina abandonada.")
+        .addTo(focosGroup);
+      L.marker([-11.952, -77.071], { icon: warningIcon })
+        .bindPopup("<b>Posible Criadero</b><br>Acumulación de basura.")
+        .addTo(focosGroup);
+      L.marker([-11.948, -77.065], { icon: riesgoIcon })
+        .bindPopup("<b>ALTO RIESGO</b><br>Tanques sin tapa.")
+        .addTo(focosGroup);
+
+      L.marker([-11.96, -77.08], { icon: saludIcon })
+        .bindPopup("<b>Hospital Sergio Bernales</b><br>Emergencias 24h")
+        .addTo(saludGroup);
+      L.marker([-11.94, -77.07], { icon: saludIcon })
+        .bindPopup("<b>Posta Médica Santa Luzmila</b><br>Lun-Sab 8am-6pm")
+        .addTo(saludGroup);
+
+      // Zona de calor simulada (Círculo)
+      L.circle([-11.955, -77.075], {
+        color: "red",
+        fillColor: "#f03",
+        fillOpacity: 0.2,
+        radius: 500,
+      }).addTo(zonasGroup);
+
+      // Añadir capas iniciales
+      focosGroup.addTo(map);
+      saludGroup.addTo(map);
+
+      // --- Funciones de Control ---
+      function toggleLayer(type) {
+        if (type === "focos") {
+          if (map.hasLayer(focosGroup)) map.removeLayer(focosGroup);
+          else map.addLayer(focosGroup);
+        } else if (type === "salud") {
+          if (map.hasLayer(saludGroup)) map.removeLayer(saludGroup);
+          else map.addLayer(saludGroup);
+        } else if (type === "zonas") {
+          if (map.hasLayer(zonasGroup)) map.removeLayer(zonasGroup);
+          else map.addLayer(zonasGroup);
+        }
+      }
+
+      function locateUser() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              map.setView([latitude, longitude], 15);
+              L.marker([latitude, longitude])
+                .addTo(map)
+                .bindPopup("Estás aquí")
+                .openPopup();
+            },
+            () => {
+              alert("No se pudo obtener tu ubicación.");
+            }
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

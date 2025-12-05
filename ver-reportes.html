@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reportes de la Comunidad - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li>
+                <a href="reportes-publicos.html" class="active-link"
+                  >Ver reportes</a
+                >
+              </li>
+              <li><a href="#">Consultar Focos</a></li>
+              <li><a href="#">Comunidad</a></li>
+            </ul>
+          </nav>
+
+          <div class="auth-buttons">
+            <button
+              class="btn-login"
+              onclick="window.location.href='login.html'"
+            >
+              Iniciar Sesión
+            </button>
+            <button
+              class="btn-register"
+              onclick="window.location.href='register.html'"
+            >
+              Registrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <div class="section-header-left">
+        <h1>Reportes de la Comunidad</h1>
+        <p>
+          Visualiza las alertas recientes generadas por vecinos comprometidos
+          con la prevención.
+        </p>
+      </div>
+
+      <div class="filters-bar">
+        <div class="filter-buttons">
+          <button class="filter-btn active" onclick="filterReports('all')">
+            Todos
+          </button>
+          <button class="filter-btn" onclick="filterReports('risk')">
+            Alto Riesgo
+          </button>
+          <button class="filter-btn" onclick="filterReports('resolved')">
+            Zonas Atendidas
+          </button>
+        </div>
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            placeholder="Buscar por distrito..."
+            class="search-input"
+          />
+        </div>
+      </div>
+
+      <div class="reports-grid-full" id="reportsGrid">
+        <div class="report-card status-risk">
+          <div class="report-image">
+            <div class="img-placeholder">
+              <i class="fa-regular fa-image"></i>
+            </div>
+          </div>
+          <div class="report-content">
+            <div class="report-header">
+              <span class="report-date">Hace 2 horas</span>
+              <span class="status-badge risk">Riesgo Alto</span>
+            </div>
+            <h4>Piscina abandonada</h4>
+            <p class="report-address">
+              <i class="fa-solid fa-location-dot"></i> Urb. El Pinar, Comas
+            </p>
+            <div style="margin-top: 10px; font-size: 0.85rem; color: #64748b">
+              <i class="fa-solid fa-users"></i> Reportado por 3 vecinos
+            </div>
+          </div>
+        </div>
+
+        <div class="report-card status-resolved">
+          <div class="report-image">
+            <div class="img-placeholder">
+              <i class="fa-regular fa-image"></i>
+            </div>
+          </div>
+          <div class="report-content">
+            <div class="report-header">
+              <span class="report-date">Ayer</span>
+              <span class="status-badge resolved">Fumigado</span>
+            </div>
+            <h4>Acumulación de llantas</h4>
+            <p class="report-address">
+              <i class="fa-solid fa-location-dot"></i> Av. Trapiche, Comas
+            </p>
+            <div style="margin-top: 10px; font-size: 0.85rem; color: #166534">
+              <i class="fa-solid fa-check-double"></i> Atendido por
+              Municipalidad
+            </div>
+          </div>
+        </div>
+
+        <div class="report-card status-pending">
+          <div class="report-image">
+            <div class="img-placeholder">
+              <i class="fa-regular fa-image"></i>
+            </div>
+          </div>
+          <div class="report-content">
+            <div class="report-header">
+              <span class="report-date">Hace 5 horas</span>
+              <span class="status-badge pending">En Revisión</span>
+            </div>
+            <h4>Tanque de agua sin tapa</h4>
+            <p class="report-address">
+              <i class="fa-solid fa-location-dot"></i> Jr. Las Gardenias 102
+            </p>
+            <div style="margin-top: 10px; font-size: 0.85rem; color: #64748b">
+              <i class="fa-solid fa-user"></i> Reportado por vecino
+            </div>
+          </div>
+        </div>
+
+        <div class="report-card status-risk">
+          <div class="report-image">
+            <div class="img-placeholder">
+              <i class="fa-regular fa-image"></i>
+            </div>
+          </div>
+          <div class="report-content">
+            <div class="report-header">
+              <span class="report-date">Hace 1 día</span>
+              <span class="status-badge risk">Riesgo Alto</span>
+            </div>
+            <h4>Agua estancada en parque</h4>
+            <p class="report-address">
+              <i class="fa-solid fa-location-dot"></i> Parque Zonal Sinchi Roca
+            </p>
+            <div style="margin-top: 10px; font-size: 0.85rem; color: #64748b">
+              <i class="fa-solid fa-users"></i> Reportado por 5 vecinos
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="page-btn disabled">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          margin-top: 2rem;
+          padding: 2rem;
+          background: #ebf5ff;
+          border-radius: 16px;
+        "
+      >
+        <h3>¿Quieres ayudar a tu comunidad?</h3>
+        <p style="margin-bottom: 1rem; color: #64748b">
+          Regístrate para reportar focos y recibir alertas en tiempo real.
+        </p>
+        <button
+          class="btn-primary"
+          onclick="window.location.href='register.html'"
+        >
+          Crear Cuenta Gratis
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>PrevDengue</h3>
+          <p>© 2025 PrevDengue.<br />Todos los derechos reservados.</p>
+          <p class="version-text">Versión 1.0.0</p>
+        </div>
+        <div class="footer-col">
+          <h4>Protección de Datos</h4>
+          <ul class="footer-links">
+            <li><a href="">Ley N° 29733</a></li>
+            <li><a href="#">Políticas de Privacidad</a></li>
+            <li><a href="#">Normas de Uso</a></li>
+            <li><a href="#">Reglamento de la App</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" class="social-link facebook"
+              ><img src="Imagenes/facebook.png" alt="FB" class="social-img"
+            /></a>
+            <a href="#" class="social-link instagram"
+              ><img src="Imagenes/Instagraml.png" alt="IG" class="social-img"
+            /></a>
+            <a href="#" class="social-link x-twitter"
+              ><img src="Imagenes/X.png" alt="X" class="social-img"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Menú Hamburguesa
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
+
+      // Filtros Simples (Visuales)
+      function filterReports(status) {
+        const buttons = document.querySelectorAll(".filter-btn");
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
+
+        const cards = document.querySelectorAll(".report-card");
+        cards.forEach((card) => {
+          if (status === "all") {
+            card.style.display = "block";
+          } else {
+            card.classList.contains("status-" + status)
+              ? (card.style.display = "block")
+              : (card.style.display = "none");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

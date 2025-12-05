@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Panel - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="dashboard.html">Inicio</a></li>
+              <li>
+                <a href="dashboard.html" class="active-link">Mis Reportes</a>
+              </li>
+              <li><a href="#">Mapa de Calor</a></li>
+              <li><a href="#">Ayuda</a></li>
+            </ul>
+          </nav>
+
+          <div class="auth-buttons">
+            <button class="btn-profile">
+              <div class="profile-pic-small">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <span>Mi Perfil</span>
+            </button>
+            <button
+              class="btn-logout"
+              onclick="window.location.href='index.html'"
+            >
+              <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <section class="dashboard-welcome">
+        <div class="welcome-text">
+          <h1>Hola usuario 👋</h1>
+          <p>Gracias por contribuir a mantener tu comunidad segura.</p>
+        </div>
+
+        <button
+          class="btn-new-report shadow-pulse"
+          onclick="window.location.href='reporte.html'"
+        >
+          <i class="fa-solid fa-camera"></i> Reportar Nuevo Foco
+        </button>
+      </section>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <i class="fa-solid fa-clipboard-list"></i>
+          </div>
+          <div class="stat-info">
+            <h3>3</h3>
+            <p>Reportes Totales</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <i class="fa-solid fa-check-circle"></i>
+          </div>
+          <div class="stat-info">
+            <h3>1</h3>
+            <p>Atendidos</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon yellow"><i class="fa-solid fa-clock"></i></div>
+          <div class="stat-info">
+            <h3>2</h3>
+            <p>En Revisión</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="reports-section">
+        <h2>Historial de Reportes</h2>
+
+        <div class="reports-list">
+          <div class="report-card">
+            <div class="report-image">
+              <div class="img-placeholder">
+                <i class="fa-regular fa-image"></i>
+              </div>
+            </div>
+            <div class="report-details">
+              <div class="report-header">
+                <span class="report-date">25 Oct, 2025</span>
+                <span class="status-badge pending">En Revisión</span>
+              </div>
+              <h4>Agua estancada en parque</h4>
+              <p class="report-location">
+                <i class="fa-solid fa-location-dot"></i> Av. Los Incas 380,
+                Comas
+              </p>
+              <button class="btn-view-details">Ver Detalles</button>
+            </div>
+          </div>
+
+          <div class="report-card">
+            <div class="report-image">
+              <div class="img-placeholder">
+                <i class="fa-regular fa-image"></i>
+              </div>
+            </div>
+            <div class="report-details">
+              <div class="report-header">
+                <span class="report-date">10 Oct, 2025</span>
+                <span class="status-badge resolved">Atendido</span>
+              </div>
+              <h4>Llantas abandonadas</h4>
+              <p class="report-location">
+                <i class="fa-solid fa-location-dot"></i> Jr. Puno 120, Comas
+              </p>
+              <button class="btn-view-details">Ver Respuesta</button>
+            </div>
+          </div>
+
+          <div class="report-card">
+            <div class="report-image">
+              <div class="img-placeholder">
+                <i class="fa-regular fa-image"></i>
+              </div>
+            </div>
+            <div class="report-details">
+              <div class="report-header">
+                <span class="report-date">05 Oct, 2025</span>
+                <span class="status-badge risk">Riesgo Alto</span>
+              </div>
+              <h4>Tanque sin tapa</h4>
+              <p class="report-location">
+                <i class="fa-solid fa-location-dot"></i> Av. Universitaria 500
+              </p>
+              <button class="btn-view-details">Ver Detalles</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
+    </script>
+  </body>
+</html>

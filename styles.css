@@ -673,7 +673,1037 @@ footer {
 .social-link:hover .social-img {
   filter: none; /* Vuelve al color original (negro/color) al hacer hover */
 }
+/* =========================================
+   ESTILOS DEL DASHBOARD Y NUEVOS BOTONES
+   ========================================= */
 
+/* Fondo gris para diferenciar dashboard del landing */
+.bg-gray {
+  background-color: #f8fafc;
+}
+
+/* Botones de Menú Logueado */
+.btn-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-soft); /* Azul suave #DBEAFE */
+  color: var(--primary-blue);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-profile:hover {
+  background-color: #bfdbfe;
+}
+
+.profile-pic-small {
+  width: 24px;
+  height: 24px;
+  background-color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: var(--white); /* Blanco en desktop sobre header azul */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--white);
+}
+
+/* Link activo en menú */
+.active-link {
+  font-weight: 700;
+  border-bottom: 2px solid var(--white);
+}
+
+/* --- Layout del Dashboard --- */
+.dashboard-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 5%;
+  min-height: 80vh;
+}
+
+/* Sección de Bienvenida */
+.dashboard-welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.welcome-text h1 {
+  font-size: 1.8rem;
+  color: var(--text-main);
+}
+
+.welcome-text p {
+  color: var(--text-light);
+}
+
+.btn-new-report {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+
+.btn-new-report:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Tarjetas de Estadísticas */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.stat-icon.blue {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.stat-icon.green {
+  background: #dcfce7;
+  color: #166534;
+}
+.stat-icon.yellow {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.stat-info h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  line-height: 1;
+}
+.stat-info p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* Sección de Reportes */
+.reports-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.reports-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.report-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s;
+}
+
+.report-card:hover {
+  transform: translateY(-3px);
+}
+
+.report-image {
+  height: 140px;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-placeholder {
+  font-size: 2rem;
+  color: #94a3b8;
+}
+
+.report-details {
+  padding: 1.2rem;
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.report-date {
+  color: var(--text-light);
+}
+
+/* Badges de Estado */
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.status-badge.pending {
+  background: #fef9c3;
+  color: #854d0e;
+}
+.status-badge.resolved {
+  background: #dcfce7;
+  color: #166534;
+}
+.status-badge.risk {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.report-details h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.report-location {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.btn-view-details {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--primary-blue);
+  color: var(--primary-blue);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-view-details:hover {
+  background: var(--bg-soft);
+}
+/* =========================================
+   ESTILOS DE REPORTE.HTML
+   ========================================= */
+
+.report-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 5%;
+  min-height: 85vh;
+}
+
+.report-card-form {
+  background: var(--white);
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+/* Header del Formulario */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.form-header h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+.back-link-simple {
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+}
+
+.back-link-simple:hover {
+  color: var(--alert-red);
+}
+
+/* Secciones del Formulario */
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-helper {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+/* 1. Mapa Pequeño */
+.mini-map-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  z-index: 1;
+}
+
+/* 2. Subida de Archivo Personalizada */
+.file-upload-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.file-input {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--text-light);
+  gap: 10px;
+}
+
+.file-label:hover {
+  background-color: #eff6ff;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+/* 3. Text Area */
+.text-area {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.95rem;
+  resize: vertical;
+  outline: none;
+}
+
+.text-area:focus {
+  border-color: var(--primary-blue);
+}
+
+/* 4. SWITCH DE SÍNTOMAS (CSS Puro) */
+.switch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff7ed; /* Fondo naranja muy suave */
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #fed7aa;
+}
+
+.switch-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-title {
+  font-weight: 700;
+  color: #9a3412;
+}
+.label-desc {
+  font-size: 0.8rem;
+  color: #c2410c;
+}
+
+/* El interruptor */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--alert-red);
+} /* Rojo al activar */
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--alert-red);
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Alerta Médica (Oculta/Visible) */
+.hidden {
+  display: none;
+}
+.visible {
+  display: flex;
+  animation: fadeIn 0.3s;
+}
+
+.medical-alert {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fef2f2;
+  border-left: 4px solid var(--alert-red);
+  color: #991b1b;
+  border-radius: 8px;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 5. BOTÓN ENVIAR GRANDE */
+.btn-submit-report {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 1rem;
+}
+
+.btn-submit-report:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+/* =========================================
+   ESTILOS DE VER-REPORTES.HTML
+   ========================================= */
+
+.section-header-left {
+  margin-bottom: 2rem;
+}
+
+.section-header-left h1 {
+  font-size: 2rem;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+.section-header-left p {
+  color: var(--text-light);
+}
+
+/* Barra de Filtros y Búsqueda */
+.filters-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--white);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-btn:hover {
+  background: var(--bg-light);
+  color: var(--text-main);
+}
+
+.filter-btn.active {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+}
+
+/* Input de Búsqueda */
+.search-wrapper {
+  position: relative;
+  min-width: 250px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.search-input:focus {
+  border-color: var(--primary-blue);
+}
+
+/* Grid Completo de Reportes */
+.reports-grid-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Reutilizamos .report-card del dashboard, pero aseguramos que se comporte bien */
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
+.page-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e2e8f0;
+  background: var(--white);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s;
+}
+
+.page-btn:hover:not(.disabled) {
+  background-color: var(--bg-light);
+  border-color: #cbd5e1;
+}
+
+.page-btn.active {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--primary-blue);
+}
+
+.page-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* =========================================
+   ESTILOS DE CONSULTAR-FOCOS.HTML
+   ========================================= */
+
+/* Layout de Mapa a pantalla completa (o casi) */
+.full-height {
+  min-height: calc(100vh - 80px); /* Resta la altura del header */
+  display: flex;
+  flex-direction: column;
+}
+
+.map-layout {
+  display: flex;
+  gap: 1.5rem;
+  height: 600px; /* Altura fija para el área de trabajo */
+  margin-bottom: 3rem;
+}
+
+/* Sidebar Lateral */
+.map-sidebar {
+  width: 300px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+.sidebar-section h3 {
+  font-size: 1rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 5px;
+}
+
+/* Opciones de Filtro */
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.filter-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-blue);
+  cursor: pointer;
+}
+
+.filter-option label {
+  cursor: pointer;
+}
+
+/* Colores de texto para filtros */
+.text-red {
+  color: var(--alert-red);
+}
+.text-blue {
+  color: var(--primary-blue);
+}
+.text-orange {
+  color: #f59e0b;
+}
+
+/* Leyenda */
+.legend-list {
+  list-style: none;
+}
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red {
+  background-color: var(--alert-red);
+}
+.dot.yellow {
+  background-color: #facc15;
+}
+.dot.blue {
+  background-color: var(--primary-blue);
+}
+.dot.green {
+  background-color: var(--success-green);
+}
+
+/* Tarjeta de Resumen en Sidebar */
+.sidebar-card {
+  background-color: var(--bg-light);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.sidebar-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.district-name {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  border-bottom: 1px dashed #cbd5e1;
+  padding-bottom: 5px;
+}
+
+/* Visor del Mapa */
+.map-viewer {
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #e2e8f0;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#consult-map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Botón flotante "Mi Ubicación" */
+.btn-locate {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 400; /* Sobre el mapa */
+  background: var(--white);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 1.2rem;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-locate:hover {
+  background: #f1f5f9;
+}
+/* =========================================
+   ESTILOS DE COMUNIDAD.HTML
+   ========================================= */
+
+/* --- Sección Educación --- */
+.education-section {
+  margin-bottom: 4rem;
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.edu-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  transition: transform 0.3s;
+}
+
+.edu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.edu-image {
+  height: 200px;
+  background-color: #CBD5E1; /* Color de fondo si la imagen falla */
+  overflow: hidden;
+}
+
+.edu-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.edu-card:hover .edu-image img {
+  transform: scale(1.05);
+}
+
+.edu-content {
+  padding: 1.5rem;
+}
+
+.edu-content h3 {
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.edu-content p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+/* --- Sección FAQ (Acordeón) --- */
+.faq-section {
+  margin-bottom: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--white);
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.faq-item[open] {
+  border-color: var(--bg-soft);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+}
+
+.faq-item summary {
+  font-weight: 700;
+  color: var(--text-main);
+  list-style: none;
+  position: relative;
+  padding-right: 30px;
+}
+
+/* Icono personalizado para el acordeón */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.2rem;
+  color: var(--primary-blue);
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+  content: '-';
+  transform: rotate(0deg); /* Ajuste visual simple */
+}
+
+.faq-item p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  padding-top: 0.5rem;
+  border-top: 1px solid #F1F5F9;
+}
+
+/* --- Sección Comentarios --- */
+.feedback-section {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.feedback-card {
+  background: var(--primary-blue); /* Fondo azul institucional */
+  color: var(--white);
+  width: 100%;
+  max-width: 700px;
+  padding: 3rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.feedback-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-card p {
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 2rem;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.feedback-input, .feedback-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1rem;
+  outline: none;
+}
+
+.feedback-textarea {
+  resize: vertical;
+}
+
+.btn-submit-feedback {
+  background-color: var(--white);
+  color: var(--primary-blue);
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  margin-top: 0.5rem;
+}
+
+.btn-submit-feedback:hover {
+  background-color: #F1F5F9;
+  transform: translateY(-2px);
+}
 /* =========================================
    RESPONSIVE
    ========================================= */
@@ -774,4 +1804,64 @@ footer {
   .social-icons {
     justify-content: center;
   }
+  .btn-logout {
+    border-color: rgba(255, 255, 255, 0.2);
+    width: 100%; /* Ancho completo en menú móvil */
+  }
+
+  .dashboard-welcome {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-new-report {
+    width: 100%;
+    justify-content: center;
+  }
+  .report-card-form {
+    padding: 1.5rem;
+  }
+  .switch-container {
+    flex-direction: row;
+  } /* Mantener en fila aun en movil */
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrapper {
+    width: 100%;
+  }
+  .full-height {
+    min-height: auto;
+    height: auto;
+  }
+  .filter-buttons {
+    justify-content: center; /* Centrar botones en móvil */
+  }
+  .map-layout {
+    flex-direction: column-reverse;
+    height: auto; /* Importante: quitar la altura fija de escritorio */
+    gap: 1.5rem;
+  }
+
+  .map-viewer {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  #consult-map {
+    width: 100%;
+    height: 400px; /* Altura fija obligatoria */
+    min-height: 400px; /* Aseguro para evitar colapso */
+    border-radius: 16px;
+  }
+  .map-sidebar {
+    width: 100%;
+    height: auto;
+    overflow: visible; /* Quitar scroll interno en móvil */
+  }
+  .feedback-card {
+    padding: 1.5rem;
+}
 }

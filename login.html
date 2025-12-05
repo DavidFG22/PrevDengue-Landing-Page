@@ -99,5 +99,75 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginForm = document.querySelector(".login-form");
+        const emailInput = document.getElementById("user");
+        const passwordInput = document.getElementById("password");
+        const togglePasswordIcon = document.querySelector(".toggle-password");
+
+        // 1. Funcionalidad para mostrar/ocultar contraseña
+        togglePasswordIcon.addEventListener("click", () => {
+          const type =
+            passwordInput.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordInput.setAttribute("type", type);
+          
+          // Cambiar icono
+          togglePasswordIcon.classList.toggle("fa-eye");
+          togglePasswordIcon.classList.toggle("fa-eye-slash");
+        });
+
+        // 2. Validación al enviar el formulario
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault(); // Evita que la página se recargue
+
+          const emailValue = emailInput.value.trim().toLowerCase();
+          const passwordValue = passwordInput.value;
+
+          // Dominios permitidos
+          const allowedDomains = [
+            "@gmail.com",
+            "@hotmail.com",
+            "@outlook.com",
+            "@yahoo.com",
+            "@icloud.com",
+          ];
+
+          // A. Validar Correo
+          const isValidEmail = allowedDomains.some((domain) =>
+            emailValue.endsWith(domain)
+          );
+
+          if (!isValidEmail) {
+            alert("Por favor, usa un correo válido (ej: @gmail.com, @hotmail.com).");
+            emailInput.style.borderColor = "#EF4444"; // Rojo error
+            emailInput.focus();
+            return;
+          } else {
+            emailInput.style.borderColor = "#E2E8F0"; // Restaurar borde
+          }
+
+          // B. Validar Contraseña (Mínimo 8 caracteres)
+          if (passwordValue.length < 8) {
+            alert("La contraseña debe tener al menos 8 caracteres.");
+            passwordInput.style.borderColor = "#EF4444";
+            passwordInput.focus();
+            return;
+          } else {
+            passwordInput.style.borderColor = "#E2E8F0";
+          }
+
+          // C. SI TODO ESTÁ CORRECTO -> REDIRIGIR
+          // Aquí ocurre la magia:
+          window.location.href = "dashboard.html";
+        });
+
+        // Limpiar error cuando el usuario escribe
+        emailInput.addEventListener("input", () => emailInput.style.borderColor = "#E2E8F0");
+        passwordInput.addEventListener("input", () => passwordInput.style.borderColor = "#E2E8F0");
+      });
+    </script>
   </body>
 </html>
