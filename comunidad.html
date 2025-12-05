@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comunidad y Educación - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray">
+    
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="ver-reportes.html">Ver reportes</a></li>
+              <li><a href="consultar-focos.html">Consultar Focos</a></li>
+              <li><a href="comunidad.html" class="active-link">Comunidad</a></li>
+            </ul>
+          </nav>
+
+          <div class="auth-buttons">
+            <button
+              class="btn-login"
+              onclick="window.location.href='login.html'"
+            >
+              Iniciar Sesión
+            </button>
+            <button
+              class="btn-register"
+              onclick="window.location.href='register.html'"
+            >
+              Registrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+        
+        <section class="education-section">
+            <div class="section-header-left">
+                <h1>Centro Educativo PrevDengue</h1>
+                <p>Información verificada para proteger a tu familia y entender el impacto en nuestra ciudad.</p>
+            </div>
+
+            <div class="edu-grid">
+                <article class="edu-card">
+                    <div class="edu-image">
+                        <img src="Imagenes/Mosquito.jpg" alt="Mosquito Aedes aegypti">
+                    </div>
+                    <div class="edu-content">
+                        <h3>¿Qué es el Dengue?</h3>
+                        <p>Es una infección viral transmitida por la picadura de las hembras infectadas de mosquitos del género <em>Aedes aegypti</em>. No se transmite de persona a persona.</p>
+                    </div>
+                </article>
+
+                <article class="edu-card">
+                    <div class="edu-image">
+                        <img src="Imagenes/MapaRiesgo.jpg" alt="Mapa de riesgo Lima">
+                    </div>
+                    <div class="edu-content">
+                        <h3>Alerta en Lima Metropolitana</h3>
+                        <p>En 2023, Lima reportó más de <strong>32,009 casos</strong>, una cifra histórica. El cambio climático y fenómenos como el Ciclón Yaku han facilitado la reproducción del vector en zonas urbanas.</p>
+                    </div>
+                </article>
+
+                <article class="edu-card">
+                    <div class="edu-image">
+                        <img src="Imagenes/Eliminarcriaderos.jpg" alt="Eliminación de criaderos">
+                    </div>
+                    <div class="edu-content">
+                        <h3>Acciones de Prevención</h3>
+                        <p>La clave es eliminar los criaderos. Lava, escobilla y tapa bien los recipientes donde almacenas agua. Elimina objetos en desuso como llantas y botellas.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Preguntas Frecuentes</h2>
+            <p class="faq-subtitle">Resolvemos tus dudas sobre el dengue y el uso de la aplicación.</p>
+            
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary>1. ¿Cuáles son los síntomas principales del dengue?</summary>
+                    <p>Los síntomas incluyen fiebre alta, dolor de cabeza intenso, dolor detrás de los ojos, dolores musculares y articulares, náuseas, vómitos, agrandamiento de ganglios linfáticos y sarpullido.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>2. ¿Qué debo hacer si tengo síntomas?</summary>
+                    <p>No te automediques. Acude inmediatamente al centro de salud más cercano. Utiliza nuestra herramienta de <strong>"Centros de Salud"</strong> en el mapa para ubicar ayuda.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>3. ¿Quiénes están en mayor riesgo?</summary>
+                    <p>Según reportes recientes, los adolescentes (12-17 años) presentan alta incidencia, y los adultos mayores (30-59 años) tienen mayor riesgo de complicaciones graves.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>4. ¿Cómo se transmite el dengue?</summary>
+                    <p>Se transmite únicamente a través de la picadura de un mosquito <em>Aedes aegypti</em> infectado. No se contagia por contacto directo con una persona enferma.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>5. ¿Qué es un criadero de mosquitos?</summary>
+                    <p>Cualquier recipiente que acumule agua estancada: baldes, floreros, llantas, platos de mascotas o techos con filtraciones.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>6. ¿Cómo uso la app para reportar un foco?</summary>
+                    <p>Regístrate o inicia sesión, pulsa el botón "Reportar Foco", toma una foto del criadero, confirma tu ubicación en el mapa y envíalo. ¡Es muy rápido!</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>7. ¿Mis reportes son anónimos?</summary>
+                    <p>Tus datos personales están protegidos por la Ley N° 29733. En el mapa público solo se muestra la ubicación del riesgo, no quién lo reportó.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>8. ¿Por qué hay tantos casos en Lima ahora?</summary>
+                    <p>Factores como el Fenómeno del Niño Costero y el Ciclón Yaku han creado condiciones de calor y lluvia ideales para que el mosquito se reproduzca en la capital.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>9. ¿Qué hacen las autoridades con mi reporte?</summary>
+                    <p>Los reportes validados se envían a las municipalidades y brigadas de salud para planificar fumigaciones y campañas de control larvario en las zonas críticas.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>10. ¿Puedo reportar si no tengo internet?</summary>
+                    <p>Sí, la aplicación permite guardar el reporte en tu dispositivo y se enviará automáticamente cuando recuperes la conexión.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="feedback-section">
+            <div class="feedback-card">
+                <h3>Envíanos tus comentarios</h3>
+                <p>Tu opinión nos ayuda a mejorar la plataforma y la lucha contra el dengue.</p>
+                
+                <form class="feedback-form">
+                    <div class="input-group">
+                        <input type="text" placeholder="Tu nombre (Opcional)" class="feedback-input">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" placeholder="Tu correo electrónico" class="feedback-input" required>
+                    </div>
+                    <div class="input-group">
+                        <textarea rows="4" placeholder="Escribe tu sugerencia, duda o comentario..." class="feedback-textarea" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit-feedback">Enviar Comentario</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>PrevDengue</h3>
+          <p>© 2025 PrevDengue.<br />Todos los derechos reservados.</p>
+          <p class="version-text">Versión 1.0.0</p>
+        </div>
+        <div class="footer-col">
+          <h4>Protección de Datos</h4>
+          <ul class="footer-links">
+            <li><a href="">Ley N° 29733</a></li>
+            <li><a href="#">Políticas de Privacidad</a></li>
+            <li><a href="#">Normas de Uso</a></li>
+            <li><a href="#">Reglamento de la App</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" class="social-link facebook"><img src="Imagenes/facebook.png" alt="FB" class="social-img"></a>
+            <a href="#" class="social-link instagram"><img src="Imagenes/Instagraml.png" alt="IG" class="social-img"></a>
+            <a href="#" class="social-link telegram"><img src="Imagenes/telegrama.png" alt="TG" class="social-img"></a>
+            <a href="#" class="social-link x-twitter"><img src="Imagenes/X.png" alt="X" class="social-img"></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Menú Hamburguesa
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
+
+      // Script simple para el formulario de comentarios
+      document.querySelector(".feedback-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert("¡Gracias por tu comentario! Lo tendremos en cuenta.");
+          e.target.reset();
+      });
+    </script>
+  </body>
+</html>
