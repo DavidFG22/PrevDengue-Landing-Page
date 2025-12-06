@@ -36,25 +36,31 @@
         <div class="nav-container" id="nav-menu">
           <nav>
             <ul>
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="ver-reportes.html">Ver reportes</a></li>
-              <li><a href="consultar-focos.html">Consultar Focos</a></li>
-              <li><a href="comunidad.html">Comunidad</a></li>
+              <li><a href="Inicio-usuario.html">Inicio</a></li>
+              <li><a href="dashboard.html">Mis reportes</a></li>
+              <li>
+                <a href="consultar-focos-usuario.html">Consultar Focos</a>
+              </li>
+              <li><a href="comunidad-usuario.html">Comunidad</a></li>
             </ul>
           </nav>
 
           <div class="auth-buttons">
             <button
-              class="btn-login"
-              onclick="window.location.href='login.html'"
+              class="btn-profile"
+              onclick="window.location.href='mi-perfil.html'"
             >
-              Iniciar Sesión
+              <div class="profile-pic-small">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <span>Mi Perfil</span>
             </button>
+
             <button
-              class="btn-register"
-              onclick="window.location.href='register.html'"
+              class="btn-logout"
+              onclick="window.location.href='index.html'"
             >
-              Registrar
+              <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
             </button>
           </div>
         </div>
@@ -64,7 +70,7 @@
     <div class="dashboard-container">
       <div class="section-header-left">
         <a
-          href="index.html"
+          href="Inicio-usuario.html"
           class="back-link-simple"
           style="margin-bottom: 10px; display: inline-flex"
         >
