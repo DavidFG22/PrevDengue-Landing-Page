@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acceso Administrativo - PrevDengue</title>
+
+    <link rel="stylesheet" href="admin-login.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-login-wrapper">
+      <div class="admin-login-card">
+        <div class="admin-header">
+          <div class="logo-container">
+            <img
+              src="Imagenes/logo sin fondo.png"
+              alt="Logo PrevDengue"
+              class="admin-logo"
+            />
+          </div>
+          <h1>Panel Institucional</h1>
+          <p>Acceso exclusivo para personal autorizado</p>
+        </div>
+
+        <form class="admin-form" action="admin-dashboard.html">
+          <div class="input-group">
+            <label for="adminUser">Usuario / ID de Empleado</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-user-shield input-icon"></i>
+              <input
+                type="text"
+                id="adminUser"
+                placeholder="Ej: admin.minsa"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="adminPass">Contraseña</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-key input-icon"></i>
+              <input
+                type="password"
+                id="adminPass"
+                placeholder="••••••••••••"
+                required
+              />
+              <i
+                class="fa-regular fa-eye toggle-password"
+                id="togglePassword"
+              ></i>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-container">
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+              Recordar credenciales
+            </label>
+            <a href="#" class="forgot-link">¿Olvidó su clave?</a>
+          </div>
+
+          <button type="submit" class="btn-admin-login">
+            Ingresar al Sistema <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <div class="admin-footer">
+          <a href="index.html" class="back-home">
+            <i class="fa-solid fa-chevron-left"></i> Volver a la Web Pública
+          </a>
+          <p class="copyright">© 2025 PrevDengue - Gestión de Salud</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const togglePassword = document.querySelector("#togglePassword");
+      const password = document.querySelector("#adminPass");
+
+      togglePassword.addEventListener("click", function (e) {
+        const type =
+          password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        this.classList.toggle("fa-eye-slash");
+        this.classList.toggle("fa-eye");
+      });
+    </script>
+  </body>
+</html>
