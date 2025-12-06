@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle del Reporte - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body class="bg-gray">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="dashboard.html">Inicio</a></li>
+              <li>
+                <a href="dashboard.html" class="active-link">Mis Reportes</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="auth-buttons">
+            <button class="btn-profile">
+              <i class="fa-solid fa-user-circle"></i> Mi Perfil
+            </button>
+            <button
+              class="btn-logout"
+              onclick="window.location.href='index.html'"
+            >
+              Cerrar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <div style="margin-bottom: 1.5rem">
+        <a href="dashboard.html" class="back-link-simple">
+          <i class="fa-solid fa-arrow-left"></i> Volver a Mis Reportes
+        </a>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-info-card">
+          <div class="detail-header">
+            <span class="status-badge pending large">En Revisión</span>
+            <span class="detail-date"
+              >Reportado el 25 Oct, 2025 - 10:30 AM</span
+            >
+          </div>
+
+          <h1>Agua estancada en parque</h1>
+
+          <div class="detail-location">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Av. Los Incas 380, Comas, Lima</span>
+          </div>
+
+          <div class="detail-description">
+            <h3>Descripción</h3>
+            <p>
+              Se observa acumulación de agua de lluvia en los juegos infantiles
+              del parque. El agua lleva estancada aproximadamente 3 días y se
+              nota presencia de mosquitos.
+            </p>
+          </div>
+
+          <div class="detail-symptoms">
+            <h3><i class="fa-solid fa-user-doctor"></i> Reporte de Salud</h3>
+            <p>
+              No se reportaron personas con síntomas febriles en el momento del
+              registro.
+            </p>
+          </div>
+
+          <div class="detail-photo">
+            <h3>Evidencia Fotográfica</h3>
+            <div class="photo-container">
+              <img src="Imagenes/Agua-estancada.jpg" alt="Foto del criadero" />
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-map-card">
+          <h3>Ubicación Exacta</h3>
+          <div id="detail-map" class="map-box"></div>
+          <div class="map-actions">
+            <button class="btn-outline" style="width: 100%">
+              <i class="fa-solid fa-share-nodes"></i> Compartir Ubicación
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      // 1. MAPA CENTRADO EN EL REPORTE
+      // Coordenadas simuladas para "Av. Los Incas, Comas"
+      var map = L.map("detail-map").setView([-11.936, -77.045], 16);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap",
+      }).addTo(map);
+
+      var dengueIcon = L.icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      });
+
+      L.marker([-11.936, -77.045], { icon: dengueIcon })
+        .addTo(map)
+        .bindPopup("<b>Foco Reportado</b><br>Av. Los Incas 380")
+        .openPopup();
+
+      // 2. MENU HAMBURGUESA
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
+    </script>
+  </body>
+</html>

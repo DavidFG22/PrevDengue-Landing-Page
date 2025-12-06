@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle del Reporte - PrevDengue</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      .response-box {
+        background-color: #f0fdf4; /* Verde muy suave */
+        border: 1px solid #bbf7d0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .response-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        color: #166534; /* Verde oscuro */
+      }
+      .response-text {
+        color: #14532d;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body class="bg-gray">
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="Imagenes/logo sin fondo.png"
+            alt="Logo PrevDengue"
+            class="logo-img"
+          />
+        </div>
+
+        <button class="hamburger" id="hamburger-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-container" id="nav-menu">
+          <nav>
+            <ul>
+              <li><a href="dashboard.html">Inicio</a></li>
+              <li>
+                <a href="dashboard.html" class="active-link">Mis Reportes</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="auth-buttons">
+            <button class="btn-profile">
+              <i class="fa-solid fa-user-circle"></i> Mi Perfil
+            </button>
+            <button
+              class="btn-logout"
+              onclick="window.location.href='index.html'"
+            >
+              Cerrar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <div style="margin-bottom: 1.5rem">
+        <a href="dashboard.html" class="back-link-simple">
+          <i class="fa-solid fa-arrow-left"></i> Volver a Mis Reportes
+        </a>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-info-card">
+          <div class="detail-header">
+            <span class="status-badge resolved large">Atendido</span>
+            <span class="detail-date"
+              >Reportado el 10 Oct, 2025 - 09:15 AM</span
+            >
+          </div>
+
+          <h1>Llantas abandonadas</h1>
+
+          <div class="detail-location">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Jr. Puno 120, Comas, Lima</span>
+          </div>
+
+          <div class="response-box">
+            <div class="response-header">
+              <i class="fa-solid fa-circle-check"></i>
+              <h3>Respuesta de la Municipalidad</h3>
+            </div>
+            <p class="response-text">
+              <strong>Acción realizada:</strong> Recojo de residuos sólidos y
+              control larvario. <br />
+              <strong>Fecha de atención:</strong> 12 Oct, 2025.<br />
+              "Se procedió al retiro de 15 llantas y se aplicó larvicida en la
+              zona para prevenir la reproducción del mosquito."
+            </p>
+          </div>
+
+          <div class="detail-description">
+            <h3>Descripción del Reporte</h3>
+            <p>
+              Hay una acumulación de llantas viejas en la esquina del parque
+              zonal. Con las lluvias recientes, se han llenado de agua y hay
+              muchos zancudos alrededor.
+            </p>
+          </div>
+
+          <div class="detail-photo">
+            <h3>Foto del Reporte</h3>
+            <div class="photo-container">
+              <img src="Imagenes/llanta.jpg" alt="Foto del criadero" />
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-map-card">
+          <h3>Ubicación Exacta</h3>
+          <div id="detail-map" class="map-box"></div>
+          <div class="map-actions">
+            <button class="btn-outline" style="width: 100%">
+              <i class="fa-solid fa-share-nodes"></i> Compartir Ubicación
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      // 1. MAPA CENTRADO EN EL REPORTE 2
+      // Coordenadas diferentes para simular otra ubicación en Comas
+      var map = L.map("detail-map").setView([-11.942, -77.058], 16);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap",
+      }).addTo(map);
+
+      // Icono Verde (Simulando que ya fue atendido/seguro o manteniendo rojo como origen)
+      // Usaremos azul para variar o el mismo rojo para indicar el punto del reporte original.
+      var dengueIcon = L.icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png", // Verde porque ya está atendido
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      });
+
+      L.marker([-11.942, -77.058], { icon: dengueIcon })
+        .addTo(map)
+        .bindPopup("<b>Zona Atendida</b><br>Jr. Puno 120")
+        .openPopup();
+
+      // 2. MENU HAMBURGUESA
+      const hamburger = document.getElementById("hamburger-btn");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        const icon = hamburger.querySelector("i");
+        if (navMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      });
+    </script>
+  </body>
+</html>
